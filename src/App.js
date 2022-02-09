@@ -15,18 +15,22 @@ const App = () => {
   useEffect(() => {
     let urlParams = new URLSearchParams(window.location.hash.replace("#", "?"));
     let token = urlParams.get('access_token');
-    setToken(token)
+    setToken(token);
+    window.localStorage.setItem('token', token);
   }, [])
 
-  console.log('TEST', token);
+  const logout = () => {
+    setToken('');
+    window.localStorage.removeItem("token")
+  }
 
   return (
     <div className="App">
       <header className="App-header">
         <h2>Get Spot</h2>
-        <a href={authURL}>
+        {!token ? <a href={authURL}>
           Login to Spotify
-        </a>
+        </a> : <button onClick={logout}>Logout</button>}
       </header>
     </div>
   );
