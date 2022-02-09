@@ -9,7 +9,7 @@ const axios = require('axios');
 const App = () => {
   const [token, setToken] = useState('');
   const [searchbar, setSearchbar] = useState('');
-  const [artist, setArtist] = useState([]);
+  const [artist, setArtist] = useState('');
 
   const CLIENT_ID = '01698bc63ac64a1fbb90d40a9140fb29';
   const REDIRECT_URI = 'http://localhost:3000';
@@ -29,6 +29,8 @@ const App = () => {
     setToken('');
     window.localStorage.removeItem("token")
   }
+
+  console.log(artist);
 
   const search = async (event) => {
     try {
@@ -67,7 +69,7 @@ const App = () => {
           : <h2>Please login</h2>
         }
       </header>
-      <ArtistProfile artist={artist} />
+      {artist ? <ArtistProfile artist={artist} /> : null}
     </div>
   );
 }
