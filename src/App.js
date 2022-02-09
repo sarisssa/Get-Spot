@@ -7,9 +7,10 @@ import './App.css';
 const axios = require('axios');
 
 const App = () => {
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState(window.localStorage.getItem('token'));
   const [searchbar, setSearchbar] = useState('');
   const [artist, setArtist] = useState('');
+  const [topTracks, setTopTracks] = useState('');
 
   const CLIENT_ID = '01698bc63ac64a1fbb90d40a9140fb29';
   const REDIRECT_URI = 'http://localhost:3000';
@@ -19,10 +20,12 @@ const App = () => {
   const authURL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`
 
   useEffect(() => {
-    let urlParams = new URLSearchParams(window.location.hash.replace("#", "?"));
-    let token = urlParams.get('access_token');
-    setToken(token);
-    window.localStorage.setItem('token', token);
+    if (!token) {
+      let urlParams = new URLSearchParams(window.location.hash.replace("#", "?"));
+      let token = urlParams.get('access_token');
+      setToken(token);
+      window.localStorage.setItem('token', token);
+    }
   }, [])
 
   const logout = () => {
@@ -30,12 +33,21 @@ const App = () => {
     window.localStorage.removeItem("token")
   }
 
-  console.log(artist);
+  const getTopTracks = async (artistID) => {
+    if (artistID) {
+      let { data } = await axios.get(`https://api.spotify.com/v1/artists/${artistID}/top-tracks?country=US&`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+      })
+      return data.tracks;
+    }
+    return [];
+  }
 
   const search = async (event) => {
     try {
-      event.preventDefault();
-      const { data } = await axios.get("https://api.spotify.com/v1/search", {
+      let { data } = await axios.get("https://api.spotify.com/v1/search", {
         headers: {
           Authorization: `Bearer ${token}`
         },
@@ -44,7 +56,15 @@ const App = () => {
           type: "artist"
         }
       })
-      setArtist(data.artists.items[0]);
+      const targetArtist = data.artists.items[0]
+      setArtist(targetArtist);
+      let artistID = targetArtist?.id
+      const trackData = await getTopTracks(artistID);
+      console.log(trackData);
+      setTopTracks(trackData);
+      setSearchbar('');
+
+
     } catch (error) {
       console.log(`Error: ${error}`);
     }
@@ -58,13 +78,19 @@ const App = () => {
           Login to Spotify
         </a> : <button onClick={logout}>Logout</button>}
         {token ?
-          <form onSubmit={search}>
+          <form name='search-form'>
             <input
+              name='search-bar'
               type="text"
+              value={searchbar}
               className='search-bar'
               placeholder='Search for an artist...'
               onChange={event => setSearchbar(event.target.value)} />
-            <button type={"submit"}>Search</button>
+            <button
+              type={'button'}
+              onClick={search}>
+              Search
+            </button>
           </form>
           : <h2>Please login</h2>
         }
