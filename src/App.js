@@ -7,6 +7,7 @@ const axios = require('axios');
 const App = () => {
   const [token, setToken] = useState('');
   const [searchbar, setSearchbar] = useState('');
+  const [artist, setArtist] = useState([]);
 
   const CLIENT_ID = '01698bc63ac64a1fbb90d40a9140fb29';
   const REDIRECT_URI = 'http://localhost:3000';
@@ -28,18 +29,25 @@ const App = () => {
   }
 
   const search = async (event) => {
-    event.preventDefault();
-    const { data } = await axios.get("https://api.spotify.com/v1/search", {
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      params: {
-        query: searchbar,
-        type: "artist"
-      }
-    })
-    console.log(data);
-  }
+    try {
+      event.preventDefault();
+      const { data } = await axios.get("https://api.spotify.com/v1/search", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        params: {
+          query: searchbar,
+          type: "artist"
+        }
+      })
+      setArtist(data.artists.items[0]);
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
+  };
+
+  console.log(artist);
+
 
 
   return (
@@ -58,7 +66,6 @@ const App = () => {
               onChange={event => setSearchbar(event.target.value)} />
             <button type={"submit"}>Search</button>
           </form>
-
           : <h2>Please login</h2>
         }
       </header>
