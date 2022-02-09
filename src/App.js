@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react';
 
 import './App.css';
 
+const axios = require('axios');
+
 const App = () => {
   const [token, setToken] = useState('');
+  const [searchbar, setSearchbar] = useState('');
 
   const CLIENT_ID = '01698bc63ac64a1fbb90d40a9140fb29';
   const REDIRECT_URI = 'http://localhost:3000';
@@ -24,6 +27,21 @@ const App = () => {
     window.localStorage.removeItem("token")
   }
 
+  const search = async (event) => {
+    event.preventDefault();
+    const { data } = await axios.get("https://api.spotify.com/v1/search", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      params: {
+        query: searchbar,
+        type: "artist"
+      }
+    })
+    console.log(data);
+  }
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -31,6 +49,18 @@ const App = () => {
         {!token ? <a href={authURL}>
           Login to Spotify
         </a> : <button onClick={logout}>Logout</button>}
+        {token ?
+          <form onSubmit={search}>
+            <input
+              type="text"
+              className='search-bar'
+              placeholder='Search for an artist...'
+              onChange={event => setSearchbar(event.target.value)} />
+            <button type={"submit"}>Search</button>
+          </form>
+
+          : <h2>Please login</h2>
+        }
       </header>
     </div>
   );
