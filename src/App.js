@@ -1,21 +1,31 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
+
 import './App.css';
 
-function App() {
+const App = () => {
+  const [token, setToken] = useState('');
+
+  const CLIENT_ID = '01698bc63ac64a1fbb90d40a9140fb29';
+  const REDIRECT_URI = 'http://localhost:3000';
+  const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
+  const RESPONSE_TYPE = 'token';
+
+  const authURL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`
+
+  useEffect(() => {
+    let urlParams = new URLSearchParams(window.location.hash.replace("#", "?"));
+    let token = urlParams.get('access_token');
+    setToken(token)
+  }, [])
+
+  console.log('TEST', token);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+        <h2>Get Spot</h2>
+        <a href={authURL}>
+          Login to Spotify
         </a>
       </header>
     </div>
