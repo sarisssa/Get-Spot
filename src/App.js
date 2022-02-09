@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import ArtistProfile from './components/artist-profile/artist-profile.component';
+
 import './App.css';
 
 const axios = require('axios');
@@ -46,10 +48,6 @@ const App = () => {
     }
   };
 
-  console.log(artist);
-
-
-
   return (
     <div className="App">
       <header className="App-header">
@@ -69,6 +67,7 @@ const App = () => {
           : <h2>Please login</h2>
         }
       </header>
+      <ArtistProfile artist={artist} />
     </div>
   );
 }
