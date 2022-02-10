@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import Header from './components/header/header.component';
 import SearchBar from './components/search-bar/search-bar.component';
