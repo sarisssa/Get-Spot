@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+import SearchBar from './components/search-bar/search-bar.component';
 import ArtistProfile from './components/artist-profile/artist-profile.component';
 
 import './App.css';
@@ -56,14 +57,12 @@ const App = () => {
           type: "artist"
         }
       })
-      const targetArtist = data.artists.items[0]
+      const targetArtist = data.artists.items[0];
       setArtist(targetArtist);
       let artistID = targetArtist?.id
       const trackData = await getTopTracks(artistID);
-      console.log(trackData);
       setTopTracks(trackData);
       setSearchbar('');
-
 
     } catch (error) {
       console.log(`Error: ${error}`);
@@ -78,20 +77,7 @@ const App = () => {
           Login to Spotify
         </a> : <button onClick={logout}>Logout</button>}
         {token ?
-          <form name='search-form'>
-            <input
-              name='search-bar'
-              type="text"
-              value={searchbar}
-              className='search-bar'
-              placeholder='Search for an artist...'
-              onChange={event => setSearchbar(event.target.value)} />
-            <button
-              type={'button'}
-              onClick={search}>
-              Search
-            </button>
-          </form>
+          <SearchBar search={search} searchbar={searchbar} setSearchbar={setSearchbar} />
           : <h2>Please login</h2>
         }
       </header>
