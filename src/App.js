@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import SearchBar from './components/search-bar/search-bar.component';
 import ArtistProfile from './components/artist-profile/artist-profile.component';
+import TracksContainer from './components/tracks-container/tracks-container';
 
 import './App.css';
 
@@ -81,7 +82,14 @@ const App = () => {
           : <h2>Please login</h2>
         }
       </header>
-      {artist ? <ArtistProfile artist={artist} /> : null}
+      {artist
+        ?
+        <div className='search-results'>
+          <ArtistProfile artist={artist} />
+          <TracksContainer tracks={topTracks} />
+        </div>
+        : null
+      }
     </div>
   );
 }
