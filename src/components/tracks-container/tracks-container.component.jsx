@@ -1,29 +1,48 @@
 import { useState } from 'react';
 
 const TracksContainer = ({ tracks }) => {
-    const [isSongPlaying, setPlayStatus] = useState(false);
-    const [curSongURL, setURL] = useState('');
-    const [] = useState(null);
+    const [trackState, setTrackState] = useState({
+        curSongURL: '',
+        audio: null,
+        isPlaying: false
+    })
 
-    console.log(tracks);
+    const { curSongURL, audio, isPlaying } = trackState;
 
     const playSong = (previewURL) => {
+
         let curSong = new Audio(previewURL);
 
-        if (!isSongPlaying) { //Play song when no song is playing
+        if (!isPlaying) { //Play song when no song is playing
             curSong.play();
-            setPlayStatus(true);
-            setURL(previewURL);
+
+            setTrackState(prevState => ({
+                ...prevState,
+                curSongURL: previewURL,
+                isPlaying: true,
+                audio: curSong
+            }));
         }
-        else { //A song is currently playing
+        else {
             if (curSongURL === previewURL) { //User clicks on curSong again
-                curSong.pause();
-                setPlayStatus(false);
+                audio.pause();
+
+                setTrackState(prevState => ({
+                    ...prevState,
+                    isPlaying: false
+                }));
+
             }
             else { //User clicks on a different song
+                audio.pause();
                 curSong.play();
-                setPlayStatus(false); //Is this necessary?
-                setURL(previewURL);
+
+                setTrackState(prevState => ({
+                    ...prevState,
+                    curSongURL: previewURL,
+                    isPlaying: true,
+                    audio: curSong
+                }));
             }
         }
     }
