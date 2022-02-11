@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Header from './components/header/header.component';
 import SearchBar from './components/search-bar/search-bar.component';
 import ArtistProfile from './components/artist-profile/artist-profile.component';
-import TracksContainer from './components/tracks-container/tracks-container';
+import TracksContainer from './components/tracks-container/tracks-container.component';
 
 import './App.css';
 
@@ -11,7 +11,6 @@ const axios = require('axios');
 
 const App = () => {
   const [token, setToken] = useState(window.localStorage.getItem('token'));
-  const [searchbar, setSearchbar] = useState('');
   const [artist, setArtist] = useState('');
   const [topTracks, setTopTracks] = useState([]);
 
@@ -27,7 +26,7 @@ const App = () => {
     return [];
   }
 
-  const search = async (event) => {
+  const search = async (searchbar) => {
     try {
       let { data } = await axios.get("https://api.spotify.com/v1/search", {
         headers: {
@@ -46,7 +45,6 @@ const App = () => {
       const trackData = await getTopTracks(artistID);
 
       setTopTracks(trackData);
-      setSearchbar('');
 
     } catch (error) {
       console.log(`Error: ${error}`);
@@ -58,7 +56,7 @@ const App = () => {
       <Header token={token} setToken={setToken} />
       <header className="App-header">
         {token ?
-          <SearchBar search={search} searchbar={searchbar} setSearchbar={setSearchbar} />
+          <SearchBar search={search} />
           : <h2>Please login</h2>
         }
       </header>
