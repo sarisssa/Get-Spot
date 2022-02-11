@@ -11,7 +11,8 @@ const Header = ({ token, setToken }) => {
 
     useEffect(() => {
         if (!token) {
-            let urlParams = new URLSearchParams(window.location.hash.replace("#", "?"));
+            const hash = window.location.hash;
+            let urlParams = new URLSearchParams(hash.replace("#", "?"));
             let token = urlParams.get('access_token');
             setToken(token);
             window.localStorage.setItem('token', token);
