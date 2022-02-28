@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 
+import './header.styles.scss';
+
 const Header = ({ token, setToken }) => {
 
     const CLIENT_ID = '01698bc63ac64a1fbb90d40a9140fb29';
@@ -25,12 +27,17 @@ const Header = ({ token, setToken }) => {
     }
 
     return (
-        <nav className="nav-bar">
-            <h2>Get Spot</h2>
-            {!token ? <a href={authURL}>
-                Login to Spotify
-            </a> : <button onClick={logout}>Logout</button>}
-        </nav>
+        <>
+            <div className='login-button'>
+                {!token ? <a href={authURL}>
+                    Login to Spotify
+                </a> : <button onClick={logout}>Logout</button>}
+            </div>
+            <div className='header-title'>
+                <a className='app-title'>GET SPOT</a>
+                <span className='header-description'>Find your favorite artists!</span>
+            </div>
+        </>
     )
 }
 
