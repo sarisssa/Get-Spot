@@ -1,0 +1,24 @@
+
+.header-title {
+    font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.app-title {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #FFF;
+    
+    transition: all 150ms ease-in-out;
+  }
+
+.header-description {
+    font-size: 18px;
+    font-weight: normal;
+    color: #3DD73A;
+    border-left: 1px solid rgba(255,255,255,0.15);
+    margin-left: 15px;
+    padding-left: 20px;
+}
