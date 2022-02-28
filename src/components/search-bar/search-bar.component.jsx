@@ -1,12 +1,14 @@
 import { useState } from 'react';
 
+import './search-bar.styles.scss';
+
 const SearchBar = ({ search }) => {
 
     const [searchBar, setSearchBar] = useState('');
 
     const triggerSearch = () => {
         search(searchBar);
-        // setSearchbar('');
+        setSearchBar('');
     }
 
     const captureEnter = (event) => {
@@ -26,6 +28,7 @@ const SearchBar = ({ search }) => {
                 onKeyPress={(event) => captureEnter(event)}
             />
             <button
+                className='search-button'
                 type={'button'}
                 onClick={() => triggerSearch()}>
                 Search
