@@ -1,0 +1,62 @@
+.profile-container {
+    display: flex;
+    margin-bottom: 40px;
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-left: 30px;
+    text-align: left;
+  }
+  
+  .profile-image {
+    display: flex;
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+  }
+  
+  .profile-name {
+    font-size: 26px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #E7EAED;
+  }
+  .profile-popularity {
+    position: relative;
+    top: -4px;
+    display: inline-block;
+    padding: 4px 8px;
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #FFF;
+    border-radius: 4px;
+    background-color: #3DD73A;
+
+  }
+  
+  .profile-followers {
+    position: relative;
+    top: -4px;
+    display: inline-block;
+    padding: 4px 8px;
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #FFF;
+    border-radius: 4px;
+    background-color: #4d00ff;
+  }
+  
+  .profile-genres {
+    font-size: 18px;
+  }
