@@ -52,14 +52,13 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <Header token={token} setToken={setToken} />
-      <header className="App-header">
-        {token ?
+    <div className="app">
+      <div className='header'>
+        <div className='title-search-bar-container'>
+          <Header token={token} setToken={setToken} />
           <SearchBar search={search} />
-          : <h2>Please login</h2>
-        }
-      </header>
+        </div>
+      </div>
       {artist
         ?
         <div className='search-results'>
