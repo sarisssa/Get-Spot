@@ -28,10 +28,12 @@ const Header = ({ token, setToken }) => {
 
     return (
         <>
-            <div className='login-button'>
-                {!token ? <a href={authURL}>
-                    Login to Spotify
-                </a> : <button onClick={logout}>Logout</button>}
+            <div className='login-logout-button-container'>
+                {!token
+                    ? <a className='login-button' href={authURL}>
+                        Login to Spotify
+                    </a>
+                    : <button className='logout-button' onClick={logout}>Logout</button>}
             </div>
             <div className='header-title'>
                 <a className='app-title'>GET SPOT</a>

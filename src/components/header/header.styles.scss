@@ -5,6 +5,51 @@
   margin-bottom: 30px;
 }
 
+.login-logout-button-container {
+  display: flex;
+  justify-content: end;
+}
+
+.logout-button {
+  background-color: #181818;
+  color:  #fff;
+  border: 2px solid transparent;
+  border-radius: 500px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 34px;
+  letter-spacing: 1.8px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 33ms cubic-bezier(.3,0,0,1);
+    white-space: nowrap;
+    will-change: transform;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.login-button {
+  background-color: #fff;
+  color: #181818;
+  border: 2px solid transparent;
+  border-radius: 500px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 34px;
+  letter-spacing: 1.8px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 33ms cubic-bezier(.3,0,0,1);
+    white-space: nowrap;
+    will-change: transform;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
 .app-title {
     font-size: 25px;
     font-weight: bold;
