@@ -4,6 +4,7 @@ import Header from './components/header/header.component';
 import SearchBar from './components/search-bar/search-bar.component';
 import ArtistProfile from './components/artist-profile/artist-profile.component';
 import TracksContainer from './components/tracks-container/tracks-container.component';
+import Footer from './components/footer/footer.component';
 
 import './App.css';
 
@@ -61,11 +62,14 @@ const App = () => {
       </div>
       {artist
         ?
-        <div className='search-results'>
+        <div className='search-results-container'>
           <ArtistProfile artist={artist} />
           <TracksContainer tracks={topTracks} />
         </div>
-        : null
+        :
+        <div className='footer'>
+          <Footer />
+        </div>
       }
     </div>
   );

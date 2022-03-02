@@ -1,5 +1,4 @@
 
-
 .header {
   background: #0F1A47;
   padding: 70px 0px;
@@ -9,10 +8,17 @@
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: 100px;
+  margin-left: 100px;
 }
 
 
+.search-results-container {
+  padding: 50px 15px;
+}
+
+.footer {
+  padding: 30px 15px;
+}
 
 
