@@ -9,7 +9,7 @@ const Header = ({ token, setToken }) => {
     const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
     const RESPONSE_TYPE = 'token';
 
-    const authURL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`
+    const authURL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
 
     useEffect(() => {
         if (!token) {
@@ -23,7 +23,7 @@ const Header = ({ token, setToken }) => {
 
     const logout = () => {
         setToken('');
-        window.localStorage.removeItem("token")
+        window.localStorage.removeItem("token");
     }
 
     return (
@@ -33,7 +33,8 @@ const Header = ({ token, setToken }) => {
                     ? <a className='login-button' href={authURL}>
                         Login to Spotify
                     </a>
-                    : <button className='logout-button' onClick={logout}>Logout</button>}
+                    : <button className='logout-button' onClick={logout}>Logout</button>
+                }
             </div>
             <div className='header-title'>
                 <a className='app-title'>GET SPOT</a>

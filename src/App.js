@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import axios from "axios";
+
 import Header from './components/header/header.component';
 import SearchBar from './components/search-bar/search-bar.component';
 import ArtistProfile from './components/artist-profile/artist-profile.component';
@@ -7,8 +9,6 @@ import TracksContainer from './components/tracks-container/tracks-container.comp
 import Footer from './components/footer/footer.component';
 
 import './App.css';
-
-const axios = require('axios');
 
 const App = () => {
   const [token, setToken] = useState(window.localStorage.getItem('token'));
