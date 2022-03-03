@@ -5,7 +5,7 @@ import './header.styles.scss';
 const Header = ({ token, setToken }) => {
 
     const CLIENT_ID = '01698bc63ac64a1fbb90d40a9140fb29';
-    const REDIRECT_URI = 'http://localhost:3000';
+    const REDIRECT_URI = 'https://get-spot-sarisssa.vercel.app';
     const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
     const RESPONSE_TYPE = 'token';
 
