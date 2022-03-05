@@ -2,6 +2,9 @@
 
 Get Spot allow users to search for their favorite music artists with the help of Spotify's API. The search fetches data from an artist (profile picture, popularity ranking, followers, genres, and music tracks along with preview clips).
 
+## Demo
+https://get-spot.vercel.app/
+
 ## See this app in action by following the steps below.
 ```
 git clone 
