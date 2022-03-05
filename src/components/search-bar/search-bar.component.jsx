@@ -25,7 +25,7 @@ const SearchBar = ({ search }) => {
                 value={searchBar}
                 placeholder='Search for an artist...'
                 onChange={event => setSearchBar(event.target.value)}
-                onKeyPress={(event) => captureEnter(event)}
+                onKeyUp={(event) => captureEnter(event)}
             />
             <button
                 className='search-button'
