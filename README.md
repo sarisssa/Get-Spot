@@ -6,7 +6,7 @@ Get Spot allow users to search for their favorite music artists with the help of
 https://get-spot.vercel.app/
 
 
-![me](https://github.com/sarisssa/Get-Spot/blob/main/src/assets/search.gif?raw=true)
+![me](https://github.com/sarisssa/Get-Spot/blob/main/src/assets/search.gif)
 
 
 ## See this app in action by following the steps below.
